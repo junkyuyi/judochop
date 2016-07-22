@@ -1,0 +1,61 @@
+{% extends "loginandregistration/base.html" %}
+{% block title %}TRAVELS - HOME{% endblock %}
+{% block content %}
+	<div class="container hero-unit"><!-- TABLE -->	
+		<div class="row">
+			<h1 class="col-sm-11">Hello, {{ request.session.username }} ({{request.session.name}})</h1>
+			<a class="col-sm-1" href="/logoff">Logout</a>
+		</div>
+		<div class="row">
+			<h3 class="col-sm-8">Your Trip Schedules</h3>
+			<table class="table table-striped col-sm-8">
+				<thead>
+					<tr>
+						<th>Destination</th>
+						<th>Travel Start Date</th>
+						<th>Travel End Date</th>
+						<th>Plan</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for trip in mytrips%}
+					<tr>
+						<td><a href="/travels/destination/{{ trip.id }}">{{ trip.destination }}</a></td>
+						<td>{{ trip.date_from.date }}</td>					
+						<td>{{ trip.date_to.date }}</td>					
+						<td>{{ trip.description }}</td>					
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="row">
+			<h3 class="col-sm-10">Other User's Travel Plan</h3>
+			<table class="table table-striped col-sm-10">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Destination</th>
+						<th>Travel Start Date</th>
+						<th>Travel End Date</th>
+						<th>Do you want to Join?</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for trip in othertrips%}
+					<tr>
+						<td>{{ trip.planner.username}} (Name: {{ trip.planner.name }})</td>
+						<td><a href="/travels/destination/{{ trip.id }}">{{ trip.destination }}</a></td>					
+						<td>{{ trip.date_from.date }}</td>					
+						<td>{{ trip.date_to.date }}</td>					
+						<td><a href="/travels/join/{{trip.id}}">JOIN</a><td>					
+					</td>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="row">
+			<a class="col-sm-2 col-sm-offset-10" href="/travels/add">Add Travel Plan</a>
+		</div>
+	</div>
+{% endblock %}

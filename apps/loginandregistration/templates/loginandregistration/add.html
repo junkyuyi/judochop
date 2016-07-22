@@ -1,0 +1,42 @@
+{% extends "loginandregistration/base.html" %}
+{% block title %}ADD A TRIP{% endblock %}
+{% block content %}
+<div class="container hero-unit">
+    <div class="col-sm-6">
+        <h1>Add a Trip</h1>
+        {% if messages %}
+            <div class="alert alert-danger">
+                <p>WARNING:</p>
+                {% for message in messages%}
+                    <p>* {{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form action="/travels/add" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Destination</label>                                 
+                <input type="text" name="destination" placeholder="Destination"class="form-control form-control-lg">
+            </div>
+            <div class="form-group">
+                <label>Description</label>                                 
+                <input type="text" name="description" placeholder="Description"class="form-control form-control-lg">
+            </div>
+            <div class="form-group">
+                <label>Travel Date From</label>                       
+                <input type="date" name="datefrom" class="form-control form-control-lg">
+            </div>
+            <div class="form-group">
+                <label>Travel Date To</label>                       
+                <input type="date" name="dateto" class="form-control form-control-lg">
+            </div>
+
+            <div class="row section-btn"><!-- SUBMIT BUTTON-->
+                <div class="col-sm-9"></div>
+                <div class="col-sm-3"><input type="submit" class="btn btn-success" value="Add"></div>
+            </div> 
+        </form>
+    </div>
+</div>
+{% endblock %}

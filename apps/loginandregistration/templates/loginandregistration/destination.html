@@ -1,0 +1,29 @@
+{% extends "loginandregistration/base.html" %}
+{% block title %}DESTINATION - {{ destination.destination }}{% endblock %}
+{% block content %}
+<div class="container hero-unit">
+    <div class="row">
+        <div class="col-sm-1 col-sm-offset-10"><a href="/travels">HOME</a></div>
+        <div class="col-sm-1"><a href="/logoff">LOGOUT</a></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <h1>{{ destination.destination }}</h1>
+            <h4><strong>Planned by :</strong> {{ destination.planner.username }} ({{destination.planner.name}})</h4>
+            <h4><strong>Description:</strong> {{ destination.description }}</h4>
+            <h4><strong>Travel Date from:</strong> {{ destination.date_from.date }}</h4>
+            <h4><strong>Travel Date to:</strong> {{ destination.date_to.date }}</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <h1>Other users joining the trip</h1>
+            {% for otheruser in otherusers %}
+
+            <h4>{{otheruser.username}} ({{otheruser.name}})</h4>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

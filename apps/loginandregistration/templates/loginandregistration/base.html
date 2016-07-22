@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'loginandregistration/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'loginandregistration/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" href="{% static 'loginandregistration/css/styles.css' %}">
+</head>
+<body>
+
+	<!-- Header -->
+		<!-- put header here -->
+	<!-- End of Header -->
+
+	<!-- Content -->
+	{% block content %}
+	{% endblock %}
+	<!-- End of Content -->
+</body>
+</html>
